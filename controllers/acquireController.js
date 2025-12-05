@@ -45,13 +45,13 @@ async function data(req, res) {
       });
     }
 
-    const prediction = await predict(features);
+    const dataModel = await predict(features);
     const latencyMs = Date.now() - start;
     const timestamp = new Date().toISOString();
 
     //Guardamos en MongoDB
-    const predDB = await Prediction.create({
-      prediction,
+    const predDB = await dataModel.create({
+      dataModel,
       timestamp,
       latencyMs
     })
